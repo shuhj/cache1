@@ -29,6 +29,7 @@ if (is_file($file)&&time()-filemtime($file)<10) {
     //开启缓冲区
     ob_start();
 
+    //如果有$file文件就打开，没有就创建$file文件
     $res = fopen($file, 'w+');
     require_once 'test.php';
 
