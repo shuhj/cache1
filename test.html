@@ -2,8 +2,9 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>完全静态缓存测试</title>
+    <title>页面静态化(ajax---局部动态化)</title>
     <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/4.0.0/css/bootstrap-grid.css" type="text/css">
+    <script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
 </head>
 <body>
 <div class="container">
@@ -25,6 +26,32 @@
                     <li class="list-group-item"><a href="#">同桌的你</a></li>
                     <li class="list-group-item"><a href="#">不知道aaaa</a></li>
             </ul>
+
+    <hr>
+
+    <ul id='ul2' class="list-group">
+
+    </ul>
 </div>
+
+<script>
+    var htmls = '';
+    $.ajax({
+        url: './ajaxRequest.php',
+        type: 'get',
+        dataType: 'json',
+        error: function () {
+            alert('请求出错');
+        },
+        success: function (result) {
+            $.each(result.data, function (k, v) {
+                console.log(v.title);//音乐列表名
+                htmls += "<li class='list-group-item'>"+(v.title)+"</li>"
+            });
+            $('#ul2').html(htmls);
+        }
+    });
+</script>
+
 </body>
 </html>

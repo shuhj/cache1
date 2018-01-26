@@ -1,7 +1,7 @@
 <?php
 /**
  * @return array
- * 缓存测试：页面的完全静态缓存
+ * 缓存测试：页面静态化(局部动态化)
  */
 
 
@@ -22,7 +22,7 @@ function data()
 
 $file = './test.html';
 
-if (is_file($file) && time() - filemtime($file) < 100) {
+if (is_file($file) && time() - filemtime($file) < 1000) {
     require_once $file;
 } else {
     //调用上面的函数
